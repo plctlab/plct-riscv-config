@@ -348,24 +348,25 @@ class schemaValidator(Validator):
                 if split != []:
                     pri = 1
                     break
-        if value['warl']['dependency_fields'] != []:
-            l = (len(value['warl']['legal']))
-            f = 0
-            for i in range(l):
-                if "bitmask" in value['warl']['legal'][i]:
-                    f = 1
-                    splits = re.findall(
-                        r'(\[\d\])\s*->\s*.*\s*\[.*\]\s*{}\s*\[.*?[,|:].*?]'.
-                        format("bitmask"), value['warl']['legal'][i])
-                    if value['warl']['wr_illegal'] != None:
-                        for j in range(len(value['warl']['wr_illegal'])):
-                            if splits[0] in value['warl']['wr_illegal'][j]:
-                                self._error(
-                                    field,
-                                    "illegal value does not exist for the given mode{}(bitmask)"
-                                    .format(splits[0]))
-            if f == 0:
-                pass
+#        if value['warl']['dependency_fields'] != []:
+#            l = (len(value['warl']['legal']))
+#            f = 0
+#            for i in range(l):
+#                if "bitmask" in value['warl']['legal'][i]:
+#                    f = 1
+#                    splits = re.findall(
+#                        r'(\[\d\])\s*->\s*.*\s*\[.*\]\s*{}\s*\[.*?[,|:].*?]'.
+#                        format("bitmask"), value['warl']['legal'][i])
+#                    if value['warl']['wr_illegal'] != None:
+#                        for j in range(len(value['warl']['wr_illegal'])):
+                            
+#                           if splits[0] in value['warl']['wr_illegal'][j]:
+#                                self._error(
+#                                    field,
+#                                    "illegal value does not exist for the given mode{}(bitmask)"
+#                                    .format(splits[0]))
+#            if f == 0:
+#                pass
 
         elif value['warl']['dependency_fields'] == [] and pr == 1:
             self._error(field, "since dependency_fields is empty no '->' in legal fields")
